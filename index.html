@@ -73,9 +73,12 @@ let fugas = 0;
 const limite = 5;
 
 function fugir() {
+    if (fugas >= limite) return;
+
     fugas++;
 
-    if (fugas >= limite) {
+    // Na quinta tentativa, desaparece!
+    if (fugas === limite) {
         nao.style.display = 'none';
         return;
     }
@@ -86,11 +89,8 @@ function fugir() {
     nao.style.left = Math.random() * maxX + 'px';
     nao.style.top = Math.random() * maxY + 'px';
 }
-}
 
-nao.addEventListener('mouseenter', fugir);
-nao.addEventListener('touchstart', fugir);
-nao.addEventListener('click', fugir);
+nao.addEventListener('pointerenter', fugir);
 
 sim.addEventListener('click', () => {
     mensagem.style.display = 'block';
