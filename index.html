@@ -69,12 +69,24 @@
     const sim = document.getElementById('sim');
     const mensagem = document.getElementById('mensagem');
 
-    function fugir() {
-      const maxX = Math.max(0, area.clientWidth - nao.offsetWidth);
-      const maxY = Math.max(0, area.clientHeight - nao.offsetHeight);
-      nao.style.left = Math.random() * maxX + 'px';
-      nao.style.top = Math.random() * maxY + 'px';
+    let fugas = 0;
+const limiteFugas = 5;
+
+function fugir() {
+    if (fugas >= limiteFugas) return;
+
+    fugas++;
+
+    const maxX = Math.max(0, area.clientWidth - nao.offsetWidth);
+    const maxY = Math.max(0, area.clientHeight - nao.offsetHeight);
+
+    nao.style.left = Math.random() * maxX + 'px';
+    nao.style.top = Math.random() * maxY + 'px';
+
+    if (fugas === limiteFugas) {
+        nao.textContent = 'Não (cansei 😂)';
     }
+}
 
     nao.addEventListener('mouseenter', fugir);
     nao.addEventListener('touchstart', (event) => {
