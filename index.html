@@ -73,23 +73,19 @@ let fugas = 0;
 const limite = 5;
 
 function fugir() {
-    if (fugas >= limite) return;
-
     fugas++;
 
-    const maxX = area.clientWidth - nao.offsetWidth;
-    const maxY = area.clientHeight - nao.offsetHeight;
-
-    nao.style.left = Math.random() * Math.max(0, maxX) + 'px';
-    nao.style.top = Math.random() * Math.max(0, maxY) + 'px';
-
     if (fugas >= limite) {
-        nao.textContent = 'Não 😂';
-
-        nao.removeEventListener('mouseenter', fugir);
-        nao.removeEventListener('touchstart', fugir);
-        nao.removeEventListener('click', fugir);
+        nao.style.display = 'none';
+        return;
     }
+
+    const maxX = Math.max(0, area.clientWidth - nao.offsetWidth);
+    const maxY = Math.max(0, area.clientHeight - nao.offsetHeight);
+
+    nao.style.left = Math.random() * maxX + 'px';
+    nao.style.top = Math.random() * maxY + 'px';
+}
 }
 
 nao.addEventListener('mouseenter', fugir);
