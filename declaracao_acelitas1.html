@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acelitas1 ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffc8dd;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    main {
+      width: min(600px, 94vw);
+      min-height: 420px;
+      text-align: center;
+      padding: 55px 20px;
+      color: #590d22;
+    }
+    h1 { font-size: clamp(26px, 5vw, 36px); margin: 25px 0 65px; }
+    .area {
+      position: relative;
+      width: 100%;
+      height: 170px;
+    }
+    button {
+      position: absolute;
+      top: 15px;
+      min-width: 110px;
+      height: 50px;
+      padding: 0 18px;
+      border: 3px ridge #ff8fab;
+      border-radius: 8px;
+      background: #ffb3c1;
+      color: #590d22;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    #sim { left: calc(50% - 125px); }
+    #nao { left: calc(50% + 15px); }
+    #mensagem {
+      display: none;
+      margin-top: 22px;
+      font-size: 19px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Quer namorar comigo? 💗</h1>
+    <div class="area" id="area">
+      <button id="sim">Sim ❤️</button>
+      <button id="nao">Não</button>
+    </div>
+    <div id="mensagem">Eu te amo, meu amor! Lanchinho mais tarde? 💗</div>
+  </main>
+  <script>
+    const area = document.getElementById('area');
+    const nao = document.getElementById('nao');
+    const sim = document.getElementById('sim');
+    const mensagem = document.getElementById('mensagem');
+
+    function fugir() {
+      const maxX = Math.max(0, area.clientWidth - nao.offsetWidth);
+      const maxY = Math.max(0, area.clientHeight - nao.offsetHeight);
+      nao.style.left = Math.random() * maxX + 'px';
+      nao.style.top = Math.random() * maxY + 'px';
+    }
+
+    nao.addEventListener('mouseenter', fugir);
+    nao.addEventListener('touchstart', (event) => {
+      event.preventDefault();
+      fugir();
+    }, { passive: false });
+    nao.addEventListener('click', fugir);
+
+    sim.addEventListener('click', () => {
+      mensagem.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
